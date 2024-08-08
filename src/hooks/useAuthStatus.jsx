@@ -1,0 +1,23 @@
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux";
+
+
+function useAuthStatus() {
+    const [loggedIn, setLoggedIn]= useState(false);
+    const [checkingStatus, setCheckingStatus]= useState(true);
+    const {user}= useSelector((state) => state.auth)
+
+    useEffect(()=>{
+        if(user){
+            setLoggedIn(true)
+        }else{
+            setLoggedIn(false)
+        }
+        setCheckingStatus(false);
+        console.log(user, 'hiiiiiiiiiiiiiiiiiiiiiiiiii')
+    }, [user])
+
+  return {loggedIn, checkingStatus}
+}
+
+export default useAuthStatus
